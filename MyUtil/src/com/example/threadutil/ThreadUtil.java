@@ -10,7 +10,7 @@ import com.example.netutil.NetInterface;
 import com.example.requst.BaseGetRequest;
 import com.example.response.BaseRespose;
 
-public class ThreadUtil {
+final public class ThreadUtil {
 	static private Handler mHandler = new Handler(Looper.getMainLooper());
 	static public void executeHttpGet(BaseGetRequest request,NetInterface in){
 		BaseExecute be = new BaseExecute(new ExecuteInterface() {

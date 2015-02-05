@@ -1,11 +1,13 @@
 package com.example.myutil;
 
+import com.example.bean.WeatherBean;
 import com.example.obverser.ObverserInterface;
 import com.example.provider.BaseProvider;
 import com.example.provider.WeathterProvider;
 import com.example.requst.WeatherGetRequest;
 import com.example.rsp.BaseRsp;
 import com.example.rsp.WeatherRsp;
+import com.example.sql.EntityManager;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -25,6 +27,12 @@ public class MainActivity extends Activity implements OnClickListener,ObverserIn
 		setContentView(R.layout.activity_main);
 		Button mButton = (Button)findViewById(R.id.search);
 		mButton.setOnClickListener(this);
+		WeatherBean bean = new WeatherBean();
+		bean.cityId = 100;
+		bean.city = "¹ãÎ÷";
+		bean.temp = "10¶È";
+		EntityManager<WeatherBean, Integer> mEntityManager = new EntityManager<WeatherBean, Integer>(getApplicationContext());
+		mEntityManager.insert(bean);
 	}
 
 	@Override
@@ -41,8 +49,7 @@ public class MainActivity extends Activity implements OnClickListener,ObverserIn
 		if(cityNum.equals("")){
 			(Toast.makeText(getApplicationContext(), "¨r(¨s¨Œ¨t)¨q",Toast.LENGTH_SHORT )).show();
 		}else {
-			WeatherGetRequest resquest = new WeatherGetRequest(cityNum);
-			new WeathterProvider(this).sendGetMsg(resquest);
+			new WeathterProvider(this).sendGetMsg(new WeatherGetRequest(cityNum));
 		}
 		
 	}

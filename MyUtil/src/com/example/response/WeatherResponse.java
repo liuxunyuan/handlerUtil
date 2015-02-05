@@ -19,10 +19,6 @@ public class WeatherResponse extends GetResponse{
 		if(mJson == null){
 			return null;
 		}
-	/*	rsp.city = resposeGetString("city");
-		rsp.temp = resposeGetString("temp");
-		rsp.wd = resposeGetString("WD");
-		rsp.ws = resposeGetString("WS");*/
 		rsp.city = mJson.getJSONObject("weatherinfo").getString("city");
 		rsp.temp = mJson.getJSONObject("weatherinfo").getString("temp");
 		rsp.wd = mJson.getJSONObject("weatherinfo").getString("WD");

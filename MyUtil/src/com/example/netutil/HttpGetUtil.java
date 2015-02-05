@@ -15,7 +15,7 @@ import org.json.JSONException;
 import com.example.requst.BaseGetRequest;
 import com.example.response.BaseRespose;
 
-public class HttpGetUtil{
+final public class HttpGetUtil{
 	
 	static public BaseRespose execute(BaseGetRequest url,final NetInterface in) throws JSONException{
 		HttpGet httpGet = new HttpGet(url.getUrl());
