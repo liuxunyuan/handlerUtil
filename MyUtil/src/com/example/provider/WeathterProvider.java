@@ -1,5 +1,7 @@
 package com.example.provider;
 
+import java.util.List;
+
 import org.json.JSONException;
 
 import android.content.res.Resources.Theme;
@@ -9,6 +11,7 @@ import com.example.obverser.ObverserInterface;
 import com.example.requst.BaseGetRequest;
 import com.example.response.BaseRespose;
 import com.example.response.WeatherResponse;
+import com.example.rsp.BaseRsp;
 import com.example.rsp.WeatherRsp;
 import com.example.threadutil.ThreadUtil;
 
@@ -43,5 +46,39 @@ public class WeathterProvider extends BaseProvider{
 		}
 		
 	}
+
+
+
+	@Override
+	public void onQueryFailed(String error) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void onQuerySuccess(BaseRsp data) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void onQuerySuccess(List<BaseRsp> dataList) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void onQueryCode(Integer code) {
+		// TODO Auto-generated method stub
+		changerNotify(mCodenterface, code);
+	}
+
+
 
 }

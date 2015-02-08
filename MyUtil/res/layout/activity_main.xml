@@ -12,16 +12,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-        <EditText 
+      <!--   <EditText 
             android:id="@+id/where"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            />
+            />--> 
         <Button 
             android:id="@+id/search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="search"/>
+        
+        <Button 
+            android:id="@+id/insert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="insert"/>
         <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,6 +97,27 @@
                 android:text="111"/>
         </LinearLayout>
         
+        <com.example.viewutil.AsyncImageView
+            android:id="@+id/imagetestone"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_launcher"
+            />
+            
+        <com.example.viewutil.AsyncImageView
+            android:id="@+id/imagetesttwo"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_launcher"
+            />
+        <ListView 
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            
+        </ListView>
+             
     </LinearLayout>
 
 </RelativeLayout>

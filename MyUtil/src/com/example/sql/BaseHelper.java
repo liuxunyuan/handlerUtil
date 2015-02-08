@@ -1,6 +1,5 @@
 package com.example.sql;
 
-import java.lang.reflect.ParameterizedType;
 import java.sql.SQLException;
 
 import android.content.Context;
@@ -15,12 +14,18 @@ public class BaseHelper<Bean,idClass> extends OrmLiteSqliteOpenHelper{
 	
 	final private static int DATABASE_VERSON = 1;
 	private Dao<Bean,idClass> dao;
-	private BaseExchangeClass<Bean> tclass;
-	public BaseHelper(Context context){
+	private Class<Bean> mClass;
+	public BaseHelper(Context context,Class<Bean> mclass){
 
 		super(context, "Test", null, DATABASE_VERSON);
-		tclass = new BaseExchangeClass<Bean>();
-		
+	//	tclass = new BaseExchangeClass<Bean>();
+		mClass = mclass;
+		try {
+			TableUtils.createTableIfNotExists(connectionSource, mClass);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -28,7 +33,7 @@ public class BaseHelper<Bean,idClass> extends OrmLiteSqliteOpenHelper{
 		// TODO Auto-generated method stub
 
 		       try {
-				TableUtils.createTableIfNotExists(arg1,(Class<Bean>) ((ParameterizedType)tclass.getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
+				TableUtils.createTableIfNotExists(arg1,mClass);
 			} catch (java.sql.SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -41,13 +46,15 @@ public class BaseHelper<Bean,idClass> extends OrmLiteSqliteOpenHelper{
 			int arg3) {
 		// TODO Auto-generated method stub
 		try {
-			TableUtils.dropTable(arg1, (Class<Bean>) ((ParameterizedType)tclass.getClass().getGenericSuperclass()).getActualTypeArguments()[0], true);
+			TableUtils.dropTable(arg1, mClass, true);
 			onCreate(arg0, arg1);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+
 	
 	@Override
 	public void close(){
@@ -58,7 +65,7 @@ public class BaseHelper<Bean,idClass> extends OrmLiteSqliteOpenHelper{
 	public  Dao<Bean,idClass> getBaseHelperDao(){
 		if(dao == null){
 			try {
-				dao =  getDao((Class<Bean>) ((ParameterizedType)tclass.getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
+				dao =  getDao(mClass);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
